@@ -1,0 +1,47 @@
+CREATE DATABASE alx_book_store;
+USE alx_book_store;
+
+CREATE TABLE Books (
+book_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+title VARCHAR(130) NOT NULL,
+author_id INT NOT NULL,
+price DECIMAL(4,1) NOT NULL,
+publication_date DATE
+);
+
+
+CREATE TABLE Authors (
+author_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+author_name VARCHARACTER(215)
+);
+
+ALTER TABLE Authors MODIFY author_name VARCHAR(215);
+ALTER TABLE Books MODIFY author_id INT UNSIGNED NOT NULL;
+ALTER TABLE Books ADD CONSTRAINT FK_author_id FOREIGN KEY (author_id) REFERENCES Authors(author_id);
+
+CREATE TABLE Customers (
+customer_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+customer_name VARCHAR(215),
+email VARCHAR(215),
+address TEXT
+);
+
+CREATE TABLE Orders (
+order_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+customer_id INT UNSIGNED NOT NULL,
+order_date DATE,
+
+FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE Order_Details (
+orderdetailid INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+order_id INT UNSIGNED NOT NULL,
+book_id INT UNSIGNED NOT NULL,
+quantity DECIMAL,
+
+FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+FOREIGN KEY (book_id) REFERENCES Books(book_id)
+);
+
+
