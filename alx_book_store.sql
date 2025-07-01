@@ -44,4 +44,6 @@ FOREIGN KEY (order_id) REFERENCES Orders(order_id),
 FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
 
+ALTER TABLE Order_Details MODIFY quantity DECIMAL(4,1);
+
 
