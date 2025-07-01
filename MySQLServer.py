@@ -8,7 +8,7 @@ try:
     password = "SecureP@sw0rd!123"
     ) as connection:
         DB_name = "alx_book_store"
-        create_db = f"CREATE DATABASE {DB_name}"
+        create_db = f"CREATE DATABASE IF NOT EXISTS {DB_name}"
         
         with connection.cursor() as cursor:
             cursor.execute(create_db)
